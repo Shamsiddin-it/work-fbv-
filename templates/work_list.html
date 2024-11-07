@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block title %}Work List{% endblock %}
+{% block content %}
+<h1>List of Works</h1>
+<ul class="list-group">
+    {% for work in works %}
+    <li class="list-group-item">
+        <a href="{% url 'work_detail' work.id %}">{{ work.title }}</a>
+    </li>
+    {% empty %}
+    <li class="list-group-item">No works available.</li>
+    {% endfor %}
+</ul>
+<a href="{% url 'work_create' %}" class="btn btn-primary mt-3">Create New Work</a>
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block title %}{{ work.title }} - Detail{% endblock %}
+{% block content %}
+<h1>{{ work.title }}</h1>
+<p>{{ work.description }}</p>
+<p>Category: {{ work.category }}</p>
+<p>Region: {{ work.region }}</p>
+<p>Address: {{ work.address }}</p>
+
+
+<a href="{% url 'work_update' work.id %}" class="btn btn-primary mt-3">Update</a>
+<a href="{% url 'work_delete' work.id %}" class="btn btn-primary mt-3">Delete</a>
+<h2>Applications for this Work:</h2>
+<ul>
+    {% for application in application_work %}
+    <li>
+        <p>{{ application.user.fullname }} - Status: {{ application.status }}</p>
+        <p>Message: {{ application.message }}</p>
+        <a href="{% url 'application_update' application.id %}" class="btn btn-primary mt-3">Update</a>
+        <a href="{% url 'application_delete' application.id %}" class="btn btn-primary mt-3">Delete</a>
+        <a href="{% url 'application_detail' application.id %}" class="btn btn-primary mt-3">Detail</a>
+    </li>
+    {% empty %}
+    <li>No applications yet.</li>
+    {% endfor %}
+    <a href="{% url 'application_create' work.pk %}" class="btn btn-primary mt-3">Apply for this Work</a>
+    <a href="{% url 'work_list' %}" class="btn btn-secondary mt-3">Back to Work List</a>
+    
+</ul>
+
+
+{% endblock %}

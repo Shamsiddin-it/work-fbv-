@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block title %}Home{% endblock %}
+{% block content %}
+<style>
+    h1 {
+        color: #2c3e50;
+    }
+    
+    p {
+        font-size: 1.2rem;
+        color: #7f8c8d;
+    }
+
+    nav {
+        margin-top: 20px;
+        font-size: 1.1rem;
+    }
+
+    nav a {
+        color: #3498db;
+        text-decoration: none;
+        padding: 5px 10px;
+    }
+
+    nav a:hover {
+        background-color: #ecf0f1;
+        border-radius: 4px;
+    }
+
+    nav a:not(:last-child) {
+        margin-right: 10px;
+    }
+</style>
+<h1>Welcome to the Home Page</h1>
+<p>This is the landing page of our application.</p>
+<nav>
+    <a href="{% url 'user_create' %}">Create User</a> |
+    <a href="{% url 'work_create' %}">Create Work</a> |
+    <a href="{% url 'work_list' %}">Work List</a>
+</nav>
+{% endblock %}

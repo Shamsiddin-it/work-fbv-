@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block title %}Update Application{% endblock %}
+{% block content %}
+<style>
+    /* You can add your custom styles here */
+form {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+button.btn {
+    width: 100%;
+    padding: 12px;
+}
+
+a.btn {
+    display: inline-block;
+    width: 100%;
+    padding: 12px;
+    text-align: center;
+}
+
+.mt-3 {
+    margin-top: 1rem;
+}
+
+</style>
+<h1>Update Application</h1>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Update Application</button>
+</form>
+<a href="{% url 'application_detail' pk=application.pk %}" class="btn btn-secondary mt-3">Back to Application Details</a>
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% block title %}Create User{% endblock %}
+{% block content %}
+<style>
+    h1 {
+        color: #2c3e50;
+    }
+    
+    form {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #f9f9f9;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .btn {
+        width: 100%;
+        padding: 12px;
+        text-align: center;
+    }
+
+    .mt-3 {
+        margin-top: 1rem;
+    }
+
+    a.btn {
+        display: inline-block;
+        width: auto;
+        padding: 10px 20px;
+        margin-top: 10px;
+        text-align: center;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+</style>
+
+<h1>Create a New User</h1>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Create User</button>
+</form>
+<a href="{% url 'home' %}" class="btn btn-secondary mt-3">Back to Home</a>
+{% endblock %}

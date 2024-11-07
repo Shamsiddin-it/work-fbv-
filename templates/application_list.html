@@ -1,0 +1,110 @@
+{% extends 'base.html' %}
+{% block title %}Application List{% endblock %}
+{% block content %}
+<style>
+    /* General Layout */
+    body {
+        font-family: 'Arial', sans-serif;
+        background-color: #f9f9f9;
+        margin: 0;
+        padding: 20px;
+    }
+
+    h1 {
+        text-align: center;
+        color: #333;
+        font-size: 2.5rem;
+        margin-bottom: 2rem;
+    }
+
+    /* Application List Styling */
+    .list-group {
+        margin: 0 auto;
+        max-width: 800px;
+        padding: 0;
+    }
+
+    .list-group-item {
+        padding: 15px;
+        margin-bottom: 10px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        background-color: #ffffff;
+        transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    /* Hover Effect for List Items */
+    .list-group-item:hover {
+        background-color: #f1f1f1;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Link Styling inside List */
+    .list-group-item a {
+        color: #007bff;
+        text-decoration: none;
+        font-size: 1.1rem;
+        font-weight: 600;
+    }
+
+    .list-group-item a:hover {
+        text-decoration: underline;
+    }
+
+    /* Empty State Styling */
+    .list-group-item.no-applications {
+        text-align: center;
+        font-size: 1.2rem;
+        color: #666;
+    }
+
+    /* Back to Home Button Styling */
+    .btn-primary {
+        display: inline-block;
+        background-color: #007bff;
+        color: white;
+        padding: 12px 24px;
+        font-size: 1.1rem;
+        border-radius: 4px;
+        text-decoration: none;
+        transition: background-color 0.3s ease;
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    .btn-primary:hover {
+        background-color: #0056b3;
+    }
+
+    /* Mobile Responsiveness */
+    @media (max-width: 768px) {
+        h1 {
+            font-size: 2rem;
+        }
+
+        .list-group-item {
+            padding: 12px;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            font-size: 1rem;
+            padding: 10px 20px;
+        }
+    }
+</style>
+
+<h1>List of Applications</h1>
+<ul class="list-group">
+    {% for application in applications %}
+    <li class="list-group-item">
+        <a href="{% url 'application_detail' pk=application.pk %}">{{ application.user.fullname }} - {{ application.status }}</a>
+    </li>
+    {% empty %}
+    <li class="list-group-item no-applications">No applications available.</li>
+    {% endfor %}
+</ul>
+
+<a href="{% url 'home' %}" class="btn btn-primary mt-3">Back to Home</a>
+
+{% endblock %}
